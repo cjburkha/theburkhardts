@@ -247,6 +247,17 @@ a {
 a:hover {
   color: #ec9e9e;
 }
+
+.about-l {
+	text-decoration: underline;
+	
+}
+.about-l:hover {
+	/*color: #5c627c;*/
+	color: red;
+	text-decoration: none;
+}
+
 .link-1 {
   display: inline-block;
   color: #1e2439;
@@ -601,7 +612,7 @@ h1:after {
 /****Text styles****/
 .text1 {
   color: #1e2439;
-  font-size: 30px;
+  font-size: 26px;
   line-height: 52px;
   font-weight: normal;
   margin-bottom: 5px;
