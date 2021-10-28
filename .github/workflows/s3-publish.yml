@@ -1,17 +1,18 @@
-name: Upload S3
+name: Deploy for Publish
+
 on: [push]
+
 jobs:
-  S3Publish:
-    - uses: shallwefootball/upload-s3-action@v1.1.3
-    with:
-      # aws key id
-      aws_key_id: AKIAZXTAJ4PNLORC2MMX
-      # aws secret access key
-      aws_secret_access_key: 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
-      # aws bucket name
-      aws_bucket: burkhardts.ninja
-      # directory to upload
-      source_dir: .
-      # destination directory for upload
-      #destination_dir: # optional, default is /
-      run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
+  Publish:
+    runs-on: ubuntu-latest
+    steps:
+
+
+      - uses: shallwefootball/s3-upload-action@master
+        name: Upload S3
+        id: S3
+        with:
+          aws_key_id: AKIAZXTAJ4PNLORC2MMX
+          aws_secret_access_key: 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
+          aws_bucket: burkhardts.ninja
+          source_dir: 'static'
