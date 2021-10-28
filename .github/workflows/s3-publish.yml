@@ -1,18 +1,23 @@
-name: Deploy for Publish
+name: Upload Website
 
-on: [push]
+on:
+  push:
+    branches:
+    - master
 
 jobs:
-  Publish:
+  deploy:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v1
 
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
 
-      - uses: shallwefootball/s3-upload-action@master
-        name: Upload S3
-        id: S3
-        with:
-          aws_key_id: AKIAZXTAJ4PNLORC2MMX
-          aws_secret_access_key: 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
-          aws_bucket: burkhardts.ninja
-          source_dir: '*.*'
+    - name: Deploy static site to S3 bucket
+      run: aws s3 sync ./public/ s3://${{ secrets.AWS_BUCKET }} --delete
