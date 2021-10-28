@@ -15,4 +15,4 @@ jobs:
           aws_key_id: AKIAZXTAJ4PNLORC2MMX
           aws_secret_access_key: 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
           aws_bucket: burkhardts.ninja
-          source_dir: 'static'
+          source_dir: *.*
